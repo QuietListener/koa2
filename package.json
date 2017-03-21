@@ -29,6 +29,8 @@
     "mz": "2.4.0",
     "sequelize": "3.24.1",
     "mysql": "2.11.1"
-
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1"
   }
 }

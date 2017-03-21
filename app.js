@@ -59,13 +59,14 @@ app.use(templating('views', {
     watch: !isProduction
 }));
 
-//app.use(mycontroller());
+app.use(mycontroller());
 
 app.use(router.routes());
 
 Test1 = model.Test1;
 (async () => {
-    var pet = await Test1.create({name: "test11"});
+    var pet = await Test1.create({id:null,name: "test11"});
+
 })();
 
 var port = 3344;
