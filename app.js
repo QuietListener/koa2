@@ -8,7 +8,10 @@ const bodyParser = require('koa-bodyparser');
 const mycontroller = require('./controller.js');
 const templating = require("./templating_ctx.js")
 const staticFiles = require('./static-files');
+const model = require('./model');
+
 let isProduction = false;
+
 //创建一个Koa对象表示web app 本生
 const app = new Koa();
 app.use(bodyParser());
@@ -45,6 +48,10 @@ router.get("/",async(ctx,next)=>{
     ctx.response.body = "<h1>index</h1>"
 });
 
+router.get('/hello1/db', async(ctx,next)=>{
+    var ts = await model.Test1.findAll(); //使用model
+    ctx.response.body = `<h1>hello, ${JSON.stringify(ts)}</h1>`;
+});
 
 // add router middleware:
 app.use(templating('views', {
@@ -52,7 +59,14 @@ app.use(templating('views', {
     watch: !isProduction
 }));
 
-app.use(mycontroller());
+//app.use(mycontroller());
+
+app.use(router.routes());
+
+Test1 = model.Test1;
+(async () => {
+    var pet = await Test1.create({name: "test11"});
+})();
 
 var port = 3344;
 app.listen(port);

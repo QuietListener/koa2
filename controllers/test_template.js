@@ -1,5 +1,5 @@
 const env = require(__dirname+"/../nunjucks.js")
-
+var model = require('model')
 var fn_template = async (ctx, next) => {
     var s = env.render('hello.html', { name: '小明' });
     console.log(s);
@@ -7,7 +7,8 @@ var fn_template = async (ctx, next) => {
 };
 
 var fn_render = async (ctx, next) => {
-    ctx.render("hello.html",{ name: 'ctx.render' })
+    let ts = await model.Test1.findAll()
+    ctx.render("hello.html",{ name: 'ctx.render'})
 };
 
 

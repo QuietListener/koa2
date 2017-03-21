@@ -8,8 +8,8 @@ function createEnv(path, opts) {
         throwOnUndefined = opts.throwOnUndefined || false,
         env = new nunjucks.Environment(
             new nunjucks.FileSystemLoader(path, {
-                noCache: noCache,
-                watch: watch,
+                noCache: opts.noCache,
+                watch: opts.watch
             }), {
                 autoescape: autoescape,
                 throwOnUndefined: throwOnUndefined
