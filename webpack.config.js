@@ -11,7 +11,27 @@ module.exports = {
         port:3345,
         historyApiFallback: true,//不跳转
         inline: true//实时刷新
+    },
+    module: {//在配置文件里添加JSON loader
+        loaders:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',//在webpack的module部分的loaders里进行配置即可
+                query: {
+                    presets: ['es2015','react']
+                }
+            },
+            {
+                test: /\.json$/,
+                loader: "json-loader"
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'//添加对样式表的处理
+            }
+        ]
     }
-
     //直接执行webpack 就可以了
+    //node_modules/.bin/webpack-dev-server 可以运行服务器
 }
