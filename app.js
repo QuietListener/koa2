@@ -9,6 +9,7 @@ const mycontroller = require('./controller.js');
 const templating = require("./templating_ctx.js")
 const staticFiles = require('./static-files');
 const model = require('./model');
+const google_trans = require("./app/logic/goole_trans")
 
 let isProduction = false;
 
@@ -41,12 +42,30 @@ app.use(async (ctx, next) => {
 
 router.get('/hello/:name', async(ctx,next)=>{
     var name = ctx.params.name;
-ctx.response.body = `<h1>hello, ${name}</h1>`;
+    ctx.response.body = `<h1>hello, ${name}</h1>`;
 });
 
 router.get("/",async(ctx,next)=>{
     ctx.response.body = "<h1>index</h1>"
 });
+
+
+router.get("/translate",async(ctx,next)=>{
+    var sentence = ctx.params.sentence;
+    var fromLan = ctx.params.fromLan;
+    var toLan = ctx.params.toLan;
+    let status = 0;
+    let res = {}
+    try{
+        res = await google_trans(sentence);
+    }catch(e){
+        status = -1;
+    }
+
+    ctx.set("Content-Type", "application/json")
+    ctx.response.body = JSON.stringify({"data":{fromSentence:sentence,toSentence:res.text},"status":status});
+});
+
 
 router.get('/hello1/db', async(ctx,next)=>{
     var ts = await model.Test1.findAll(); //使用model
