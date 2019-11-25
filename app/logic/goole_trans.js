@@ -1,8 +1,8 @@
 const translate = require('@vitalets/google-translate-api');
 
-module.exports = function(sentence){
+module.exports = function(sentence,toLan){
 
-    return translate(sentence, {to: 'en'});
+    return translate(sentence, {to: toLan});
 
     // translate('Ik spreek Engels', {to: 'en'}).then(res => {
     //     console.log(res.text);
