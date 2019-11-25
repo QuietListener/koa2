@@ -58,7 +58,9 @@ router.get("/translate",async(ctx,next)=>{
     let res = {}
     try{
         res = await google_trans(sentence);
+        console.log("res",res);
     }catch(e){
+        console.error(e);
         status = -1;
     }
 
