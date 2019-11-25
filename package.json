@@ -29,7 +29,7 @@
     "mysql": "2.11.1",
     "mz": "2.4.0",
     "nunjucks": "2.4.3",
-    "sequelize": "3.24.1"
+    "sequelize": "5.15.1"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
