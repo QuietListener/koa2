@@ -51,9 +51,13 @@ router.get("/",async(ctx,next)=>{
 
 
 router.get("/translate",async(ctx,next)=>{
-    var sentence = ctx.params.sentence;
-    var fromLan = ctx.params.fromLan;
-    var toLan = ctx.params.toLan;
+
+    let request = ctx.request;
+    let query = request.query;
+
+    var sentence = query.sentence;
+    var fromLan = query.fromLan;
+    var toLan = query.toLan;
     let status = 0;
     let res = {}
     try{
