@@ -70,7 +70,7 @@ router.get("/translate",async(ctx,next)=>{
     }
 
     ctx.set("Content-Type", "application/json")
-    ctx.response.body = JSON.stringify({"data":{fromSentence:sentence,toSentence:res.text},"status":status});
+    ctx.response.body = JSON.stringify({"data":{fromSentence:sentence,toSentence:res.text,res:res},"status":status});
 });
 
 
