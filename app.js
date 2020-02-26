@@ -50,7 +50,7 @@ router.get("/",async(ctx,next)=>{
 });
 
 
-router.get("/translate",async(ctx,next)=>{
+router.get("/reading/translate",async(ctx,next)=>{
 
     let request = ctx.request;
     let query = request.query;
